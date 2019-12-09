@@ -1189,10 +1189,11 @@ RUN if [ ${INSTALL_GNU_PARALLEL} = true ]; then \
 
 ARG INSTALL_GRPC=true
 
-RUN if [ ${INSTALL_PHPGRPC} = true ]; then \
-    printf "\n" | pecl install -o -f grpc \
-    &&  rm -rf /tmp/pear \
-    &&  docker-php-ext-enable grpc \
+RUN if [ ${INSTALL_GRPC} = true ]; then \
+    pecl install grpc \
+    && echo "extension=grpc.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/grpc.ini \
+    && ln -s /etc/php/${LARADOCK_PHP_VERSION}/mods-available/grpc.ini /etc/php/${LARADOCK_PHP_VERSION}/cli/conf.d/20-grpc.ini \
+    && php -m | grep -q 'grpc' \
 ;fi
 
 ###########################################################################
@@ -1201,10 +1202,11 @@ RUN if [ ${INSTALL_PHPGRPC} = true ]; then \
 
 ARG INSTALL_PROTOBUF=true
 
-RUN if [ ${INSTALL_PHPPROTOBUF} = true ]; then \
-    printf "\n" | pecl install -o -f protobuf-3.10.0 \
-    &&  rm -rf /tmp/pear \
-    &&  docker-php-ext-enable protobuf \ 
+RUN if [ ${INSTALL_PROTOBUF} = true ]; then \
+    pecl install protobuf-3.10.0 \
+    && echo "extension=protobuf.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/protobuf.ini \
+    && ln -s /etc/php/${LARADOCK_PHP_VERSION}/mods-available/protobuf.ini /etc/php/${LARADOCK_PHP_VERSION}/cli/conf.d/20-protobuf.ini \
+    && php -m | grep -q 'protobuf' \
 ;fi
 
 
