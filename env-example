@@ -30,7 +30,7 @@ NETWORKS_DRIVER=bridge
 COMPOSE_FILE=docker-compose.yml
 
 # Change the separator from : to ; on Windows
-COMPOSE_PATH_SEPARATOR=:
+COMPOSE_PATH_SEPARATOR=;
 
 # Define the prefix of container names. This is useful if you have multiple projects that use laradock to have seperate containers per project.
 COMPOSE_PROJECT_NAME=laradock
@@ -155,6 +155,8 @@ WORKSPACE_INSTALL_FFMPEG=false
 WORKSPACE_INSTALL_GNU_PARALLEL=false
 WORKSPACE_INSTALL_AST=true
 WORKSPACE_AST_VERSION=1.0.3
+WORKSPACE_INSTALL_GRPC=true
+WORKSPACE_INSTALL_PROTOBUF=true
 
 ### PHP_FPM ###############################################
 

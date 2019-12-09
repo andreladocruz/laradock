@@ -1183,6 +1183,30 @@ RUN if [ ${INSTALL_GNU_PARALLEL} = true ]; then \
   apt-get -y install parallel \
 ;fi
 
+###########################################################################
+# PHP GRPC EXTENSION
+###########################################################################
+
+ARG INSTALL_GRPC=true
+
+RUN if [ ${INSTALL_PHPGRPC} = true ]; then \
+    printf "\n" | pecl install -o -f grpc \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable grpc \
+;fi
+
+###########################################################################
+# PHP PROTOBUF EXTENSION
+###########################################################################
+
+ARG INSTALL_PROTOBUF=true
+
+RUN if [ ${INSTALL_PHPPROTOBUF} = true ]; then \
+    printf "\n" | pecl install -o -f protobuf-3.10.0 \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable protobuf \ 
+;fi
+
 
 ###########################################################################
 # Check PHP version:
