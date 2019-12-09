@@ -1187,7 +1187,7 @@ RUN if [ ${INSTALL_GNU_PARALLEL} = true ]; then \
 # PHP GRPC EXTENSION
 ###########################################################################
 
-ARG INSTALL_GRPC=true
+ARG INSTALL_GRPC=false
 
 RUN if [ ${INSTALL_GRPC} = true ]; then \
     pecl install grpc \
@@ -1200,7 +1200,7 @@ RUN if [ ${INSTALL_GRPC} = true ]; then \
 # PHP PROTOBUF EXTENSION
 ###########################################################################
 
-ARG INSTALL_PROTOBUF=true
+ARG INSTALL_PROTOBUF=false
 
 RUN if [ ${INSTALL_PROTOBUF} = true ]; then \
     pecl install protobuf-3.10.0 \
