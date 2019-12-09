@@ -799,6 +799,30 @@ RUN if [ ${INSTALL_CACHETOOL} = true ]; then \
 ;fi
 
 ###########################################################################
+# PHP GRPC EXTENSION
+###########################################################################
+
+ARG INSTALL_GRPC=false
+
+RUN if [ ${INSTALL_PHPGRPC} = true ]; then \
+    printf "\n" | pecl install -o -f grpc \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable grpc \
+;fi
+
+###########################################################################
+# PHP PROTOBUF EXTENSION
+###########################################################################
+
+ARG INSTALL_PROTOBUF=false
+
+RUN if [ ${INSTALL_PHPPROTOBUF} = true ]; then \
+    printf "\n" | pecl install -o -f protobuf-3.10.0 \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable protobuf \ 
+;fi
+
+###########################################################################
 # Check PHP version:
 ###########################################################################
 
