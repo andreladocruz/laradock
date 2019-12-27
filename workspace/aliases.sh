@@ -74,6 +74,9 @@ alias artclear="php artisan cache:clear && php artisan route:clear && php artisa
 alias artcache="php artisan cache:clear && php artisan route:cache && php artisan view:cache && php artisan config:cache"
 alias composer:install="composer install && php artisan cache:clear && php artisan route:clear && php artisan view:clear && php artisan config:clear && php artisan migrate"
 alias npm:install="npm i -f && npm run dev"
+alias npm:watch="npm run watch-poll"
+alias npm:dev="npm run dev"
+alias npm:prod="npm run prod"
 alias tinker="php artisan tinker"
 
 alias phpunit="./vendor/bin/phpunit"
