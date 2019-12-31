@@ -53,16 +53,6 @@ volumes:
     driver: ${VOLUMES_DRIVER}
 
 services:
-  ### GCLOUD Utilities ##################################
-  gcloud:
-    build:
-      context: ./gcloud
-    volumes:
-      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
-    depends_on:
-      - workspace
-    tty: true
-
   ### Workspace Utilities ##################################
   workspace:
     build:
@@ -148,7 +138,6 @@ services:
         - INSTALL_GNU_PARALLEL=${WORKSPACE_INSTALL_GNU_PARALLEL}
         - INSTALL_GRPC=${WORKSPACE_INSTALL_GRPC}
         - INSTALL_PROTOBUF=${WORKSPACE_INSTALL_PROTOBUF}
-        - INSTALL_GOOGLE_CLOUD_SDK=${WORKSPACE_INSTALL_GOOGLE_CLOUD_SDK}
         - http_proxy
         - https_proxy
         - no_proxy
@@ -1126,6 +1115,16 @@ services:
   aws:
     build:
       context: ./aws-eb-cli
+    volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
+    depends_on:
+      - workspace
+    tty: true
+
+  ### GCLOUD Utilities ##################################
+  gcloud:
+    build:
+      context: ./gcloud
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
     depends_on:
